@@ -1,0 +1,19 @@
+# three node (two workers) cluster config
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: kind-guac-cluster
+networking:
+  disableDefaultCNI: true # kindnet ne induljon, kézzel kell a weavenet-et indítani
+  podSubnet: "10.32.0.0/12" # weavenet subnet
+nodes:
+- role: control-plane
+  extraPortMappings:
+  - containerPort: 8080
+    hostPort: 8080
+    listenAddress: "127.0.0.1"
+    protocol: TCP
+  image: kindest/node:v1.32.0
+- role: worker
+  image: kindest/node:v1.32.0
+- role: worker
+  image: kindest/node:v1.32.0
