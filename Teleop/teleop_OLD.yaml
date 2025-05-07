@@ -15,9 +15,15 @@ spec:
     spec:
       containers:
       - name: teleop
-        image: vgergo03/teleop:latest
+        image: osrf/ros:jazzy-desktop
         tty: true
         stdin: true
+        command: ["/bin/bash", "-c", "--"]
+        args:
+          - |
+            apt update && apt install -y ros-jazzy-teleop-twist-keyboard && \
+            source /opt/ros/jazzy/setup.bash && \
+            ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/turtle1/cmd_vel
         env:
         - name: ROS_DOMAIN_ID
           value: "0"
