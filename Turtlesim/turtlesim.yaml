@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: turtlesim
+  namespace: guacamole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: turtlesim
+  template:
+    metadata:
+      labels:
+        app: turtlesim
+    spec:
+      containers:
+      - name: turtlesim
+        image: vgergo03/turtlesim-vnc:latest
+        ports:
+        - containerPort: 5901
+        env:
+        - name: ROS_DOMAIN_ID
+          value: "0"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: turtlesim
+  namespace: guacamole
+spec:
+  selector:
+    app: turtlesim
+  ports:
+  - port: 5901
+    targetPort: 5901
+  type: ClusterIP

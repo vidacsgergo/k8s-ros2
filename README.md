@@ -1,7 +1,11 @@
 # **ROS 2 in Kubernetes with Guacamole**
 ### **Deploying the cluter (with kinD and Docker already installed)**
 start Docker daemon  
->kind create cluster --config kind-config.yaml    
+>kind create cluster --config kind-config.yaml  
+
+if port 8080 is already in use:  
+> sudo lsof -i :8080  
+> sudo kill "PID"
 
 >(deleting the cluster is: kind delete cluster -n kind-guac-cluster)
 
