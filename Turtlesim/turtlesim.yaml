@@ -13,6 +13,16 @@ spec:
       labels:
         app: turtlesim
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchFields:
+              - key: metadata.name
+                operator: In
+                values:
+                - kind-guac-cluster-worker2
+
       containers:
       - name: turtlesim
         image: vgergo03/turtlesim-vnc:latest

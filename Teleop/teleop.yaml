@@ -13,6 +13,16 @@ spec:
       labels:
         app: teleop
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchFields:
+              - key: metadata.name
+                operator: In
+                values:
+                - kind-guac-cluster-worker
+
       containers:
       - name: teleop
         image: vgergo03/teleop:latest

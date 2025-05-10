@@ -5,7 +5,7 @@ start Docker daemon
 
 if port 8080 is already in use:  
 > sudo lsof -i :8080  
-> sudo kill "PID"
+> sudo kill PID
 
 >(deleting the cluster is: kind delete cluster -n kind-guac-cluster)
 
@@ -19,7 +19,10 @@ if port 8080 is already in use:
 >kubectl port-forward -n guacamole svc/guacamole 8080:8080
 
 **Guacamole is now accessible at:**
-http://localhost:8080/
+http://localhost:8080/  
+**Username:** guacadmin  
+**Password:** guacadmin  
+(if it is not working try using Google Chrome)
 
 **Start the ROS 2 pod**  
 > kubectl apply -f ros2-gui.yaml
