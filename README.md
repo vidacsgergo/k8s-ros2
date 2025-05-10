@@ -1,5 +1,5 @@
 # **ROS 2 in Kubernetes with Guacamole**
-### **Deploying the cluter (with kinD and Docker already installed)**
+### **Deploying the cluter (with kinD and Docker already installed, Ubuntu, amd64)**
 start Docker daemon  
 >kind create cluster --config kind-config.yaml  
 
@@ -24,17 +24,6 @@ http://localhost:8080/
 **Password:** guacadmin  
 (if it is not working try using Google Chrome)
 
-**Start the ROS 2 pod**  
-> kubectl apply -f ros2-gui.yaml
-
-**Set up Guacamole connection**  
-Name: ros2-rqt-demo  
-Location: ROOT  
-Protocol: VNC  
-
-Hostname: ros2-rqt.guacamole.svc.cluster.local  
-Port: 5900  
-
-Username:  
-Password: 1234
+**Turtlesim and Teleop keyboard controller on different k8s nodes:**  
+Follow the instructions in the Turtlesim and Teleop folders to deploy the needed service and deployments. You can access the GUI with guacamole and use the keyboard controller from the teleop pod.
 
